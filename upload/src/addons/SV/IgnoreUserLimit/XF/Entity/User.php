@@ -22,7 +22,7 @@ class User extends XFCP_User
 
                 if ($ignoring && is_array($ignoring))
                 {
-                    $canIgnore = $ignoreLimit == -1 || count($ignoring) < $ignoreLimit;
+                    $canIgnore = ($ignoreLimit == -1) || (count($ignoring) < $ignoreLimit);
 
                     if (!$canIgnore)
                     {

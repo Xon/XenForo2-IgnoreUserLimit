@@ -20,6 +20,7 @@ class Setup extends AbstractSetup
         $this->db()->query("insert ignore into xf_permission_entry (user_group_id, user_id, permission_group_id, permission_id, permission_value, permission_value_int)
                 select " . User::GROUP_REG . ", 0, 'general', 'sv_userIgnoreLimit', 'allow', '-1'
                 from xf_permission_entry
+                limit 1
             ");
 
         $this->app->jobManager()->enqueueUnique(
@@ -29,16 +30,4 @@ class Setup extends AbstractSetup
             false
         );
 	}
-
-    public function uninstallStep1()
-    {
-        $this->db()->query("delete from xf_permission_entry where permission_group_id = 'general' and permission_id = 'sv_userIgnoreLimit'");
-        $this->db()->query("delete from xf_permission_entry where permission_group_id = 'general' and permission_id = 'sv_userIgnoreDisabled'");
-        $this->app->jobManager()->enqueueUnique(
-            'permissionRebuild',
-            'XF:PermissionRebuild',
-            [],
-            false
-        );
-    }
 }
