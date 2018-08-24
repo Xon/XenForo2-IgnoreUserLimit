@@ -14,12 +14,14 @@ class UserProfile extends XFCP_UserProfile
      */
     protected function getIgnored()
     {
-        if (\XF::visitor()->hasPermission('general', 'sv_userIgnoreDisabled'))
+        $ignored = $this->ignored_;
+        if (!is_array($ignored) ||
+            \XF::visitor()->hasPermission('general', 'sv_userIgnoreDisabled'))
         {
             return [];
         }
 
-        return $this->ignored_;
+        return $ignored;
     }
 
     /**
