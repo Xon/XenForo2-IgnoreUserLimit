@@ -32,7 +32,7 @@ class UserProfile extends XFCP_UserProfile
     {
         $structure = parent::getStructure($structure);
 
-        $structure->getters['ignored'] = true;
+        $structure->getters['ignored'] = ['getter' => 'getIgnored', 'cache' => false];
 
         return $structure;
     }
