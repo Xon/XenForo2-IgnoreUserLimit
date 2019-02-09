@@ -18,10 +18,10 @@ class User extends XFCP_User
             return false;
         }
 
-        $ignoreLimit = $this->hasPermission('general', 'sv_userIgnoreLimit');
+        $ignoreLimit = (int)$this->hasPermission('general', 'sv_userIgnoreLimit');
         $ignoring = $this->Profile->ignored;
 
-        if ($ignoreLimit >= 0 || count($ignoring) + 1 > $ignoreLimit)
+        if ($ignoreLimit >= 0 && count($ignoring) + 1 > $ignoreLimit)
         {
             $error = \XF::phrase('you_may_only_ignore_x_people', ['count' => $ignoreLimit]);
 
