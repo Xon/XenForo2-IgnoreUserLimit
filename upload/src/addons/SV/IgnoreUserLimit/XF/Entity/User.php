@@ -43,7 +43,7 @@ class User extends XFCP_User
         {
             // force unignore of staff
             $userId = $this->user_id;
-            $this->app->jobManager()->enqueueUnique('svUnignoreUser.' . $userId, 'SV\IgnoreUserLimit:UnignoreUser', [
+            \XF::app()->jobManager()->enqueueUnique('svUnignoreUser.' . $userId, 'SV\IgnoreUserLimit:UnignoreUser', [
                 'user_id' => $userId,
             ], false);
         }

@@ -1,8 +1,9 @@
 <?php
 
-namespace XF\Job;
+namespace SV\IgnoreUserLimit\Job;
 
 use XF\Entity\User;
+use XF\Job\AbstractRebuildJob;
 
 class UnignoreUser extends AbstractRebuildJob
 {
