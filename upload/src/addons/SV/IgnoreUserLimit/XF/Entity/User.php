@@ -34,4 +34,18 @@ class User extends XFCP_User
 
         return true;
     }
+
+    protected function _postSave()
+    {
+        parent::_postSave();
+
+        if ($this->isChanged('is_staff') && $this->is_staff)
+        {
+            // force unignore of staff
+            $userId = $this->user_id;
+            $this->app->jobManager()->enqueueUnique('svUnignoreUser.' . $userId, 'SV\IgnoreUserLimit:UnignoreUser', [
+                'user_id' => $userId,
+            ], false);
+        }
+    }
 }
