@@ -25,7 +25,7 @@ class User extends XFCP_User
         }
 
         $ignoring = $this->Profile->ignored;
-        if (count($ignoring) + 1 > $ignoreLimit)
+        if (\count($ignoring) + 1 > $ignoreLimit)
         {
             $error = \XF::phrase('you_may_only_ignore_x_people', ['count' => $ignoreLimit]);
 

@@ -17,11 +17,11 @@ class UnignoreUser extends AbstractRebuildJob
             return null;
         }
 
-		if (!$this->ignoredUser)
+		if ($this->ignoredUser === null)
         {
             /** @var  $user */
             $this->ignoredUser = $this->app->em()->find('XF:User', $this->data['user_id'], ['Profile']);
-            if (!$this->ignoredUser)
+            if (!$this->ignoredUser === null)
             {
                 return null;
             }

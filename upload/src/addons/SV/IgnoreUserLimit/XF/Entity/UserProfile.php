@@ -15,7 +15,7 @@ class UserProfile extends XFCP_UserProfile
     protected function getIgnored()
     {
         $ignored = $this->ignored_;
-        if (!is_array($ignored) ||
+        if (!\is_array($ignored) ||
             \XF::visitor()->hasPermission('general', 'sv_userIgnoreDisabled'))
         {
             return [];
